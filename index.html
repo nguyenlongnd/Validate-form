@@ -37,12 +37,27 @@
           <div class="form-group">
             <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
             <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu" type="password" class="form-control">
-            <span class="form-message"></span>
+            <span class="form-message "></span>
           </div>
       
           <button class="form-submit">Đăng ký</button>
         </form>
       
+        <script src="./validator.js"></script>
+        <script>
+            validator({
+                form: "#form-1",
+                rules: [
+                    validator.isRequired("#fullname"),
+                    validator.isEmail("#email"),
+                    validator.minLength("#password", 6),
+                    validator.isConfirmation("#password_confirmation", function(){
+                        return document.querySelector("#form-1 #password").value
+                    })
+
+                ]
+            })
+        </script>
       </div>
 </body>
 </html>
